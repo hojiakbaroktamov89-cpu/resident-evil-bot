@@ -203,8 +203,8 @@ villains_kb2 = ReplyKeyboardMarkup(
 
 video_kb = ReplyKeyboardMarkup(
     keyboard=[
-        [KeyboardButton(text="🎬 History L "), KeyboardButton(text="🧾 Requiem ")],
-        [KeyboardButton(text="🔬 Luis Sera "), KeyboardButton(text="💀 Hunk")],
+        [KeyboardButton(text="🎬 History L"), KeyboardButton(text="🧾 Requiem")],
+        [KeyboardButton(text="🔬 Luis Sera"), KeyboardButton(text="💀 Hunk")],
         [KeyboardButton(text="🎮 RE Evolution (1996-2026)"), KeyboardButton(text="⬅️ RE Menyuga qaytish")]
     ],
     resize_keyboard=True
@@ -404,7 +404,7 @@ async def genshin_info(message: Message):
     except Exception as e:
         await message.answer(f"Xato yuz berdi: {e}")
 
-@router.message(F.text == "🎬 History L ")
+@router.message(F.text == "🎬 History L")
 async def send_video_handler(message: Message):
     try:
         video_id = "BAACAgQAAxkBAAIC0GoftHToFlJg8b90xtF19sXRaJnBAAJVCwAC5ATUUMlHxP8xslPcOwQ"
@@ -412,7 +412,7 @@ async def send_video_handler(message: Message):
     except Exception as e:
         await message.answer(f"Video yuborishda xato: {e}")
 
-@router.message(F.text == "🧾 Requiem ")
+@router.message(F.text == "🧾 Requiem")
 async def send_raccoon_video(message: Message):
     video_id = "BAACAgIAAxkBAAICzmoftFyYJfPSgBknQl3LD-wSqLi2AAKLjwACI3_pSgp2Z4vllVaVOwQ"
     try:
@@ -428,7 +428,7 @@ async def send_hunk_video(message: Message):
     except Exception as e:
         await message.answer(f"Yuborishda xato: {e}")
 
-@router.message(F.text == "🔬 Luis Sera ")
+@router.message(F.text == "🔬 Luis Sera")
 async def send_luis_video(message: Message):
     video_id = "BAACAgIAAxkBAAICzGoftFM3YwSEOYDZSTc9aB6BHkoYAAK-lwACe6zBSgri7-jpEpvuOwQ"
     try:
