@@ -407,14 +407,14 @@ async def genshin_info(message: Message):
 @router.message(F.text == "🎬 History L ")
 async def send_video_handler(message: Message):
     try:
-        video_id = "BAACAgQAAxkBAAMTagVYdswe_kWX9DBGRQ5VI0SWrRwAAmcKAALczdVQBlzfc_FJdr47BA"
+        video_id = "BAACAgQAAxkBAAIC0GoftHToFlJg8b90xtF19sXRaJnBAAJVCwAC5ATUUMlHxP8xslPcOwQ"
         await message.answer_video(video=video_id, caption="Resident Evil qahramoni: Leon S. Kennedy! 🔥")
     except Exception as e:
         await message.answer(f"Video yuborishda xato: {e}")
 
 @router.message(F.text == "🧾 Requiem ")
 async def send_raccoon_video(message: Message):
-    video_id = "BAACAgIAAxkBAAM4agVbJFz3ODpnnq0069s9MQjn3FsAAouPAAIjf-lKCnZni-WVVpU7BA"
+    video_id = "BAACAgIAAxkBAAICzmoftFyYJfPSgBknQl3LD-wSqLi2AAKLjwACI3_pSgp2Z4vllVaVOwQ"
     try:
         await message.answer_video(video=video_id, caption="<b>Dahshatli va unutilmas qaytish</b> 🔥", parse_mode="HTML")
     except Exception as e:
@@ -430,7 +430,7 @@ async def send_hunk_video(message: Message):
 
 @router.message(F.text == "🔬 Luis Sera ")
 async def send_luis_video(message: Message):
-    video_id = "BAACAgIAAxkBAAM2agVa3VounhPcibarQZpacGeSkQMAAr6XAAJ7rMFKCuLv6OkSm-47BA"
+    video_id = "BAACAgIAAxkBAAICzGoftFM3YwSEOYDZSTc9aB6BHkoYAAK-lwACe6zBSgri7-jpEpvuOwQ"
     try:
         await message.answer_video(video=video_id, caption="<b>Luis Sera:</b> 'People can change right?' 🔬💉", parse_mode="HTML")
     except Exception as e:
