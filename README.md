@@ -1,100 +1,213 @@
+<div align="center">
+
 # 🧟 Resident Evil Telegram Bot
 
-> Resident Evil o'yin va kino seriyasi haqida to'liq ma'lumot beruvchi Telegram bot
+[![Python](https://img.shields.io/badge/Python-3.11-blue?style=for-the-badge&logo=python)](https://python.org)
+[![aiogram](https://img.shields.io/badge/aiogram-3.7.0-green?style=for-the-badge)](https://aiogram.dev)
+[![Railway](https://img.shields.io/badge/Deployed-Railway-purple?style=for-the-badge)](https://railway.app)
+[![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)](LICENSE)
 
-## 📌 Bot haqida
+> **A feature-rich Telegram bot dedicated to the entire Resident Evil universe — characters, villains, game history, videos, and more.**
 
-Bu bot **Resident Evil** franshizasiga bag'ishlangan bo'lib, foydalanuvchilarga quyidagi imkoniyatlarni taqdim etadi:
+[🤖 Try the Bot](https://t.me/your_bot_username) • [📢 Channel](https://t.me/just_live_1_8) • [👤 Developer](https://t.me/NOOB_comeback)
 
-- 🦸 RE qahramonlari haqida batafsil ma'lumot va rasmlar
-- 🦹 RE yovuzlari tarixi va xususiyatlari
-- 🎬 Video kliplar va sahnalar
-- 📖 O'yin seriyasi tarixi
-- 💰 Moliyaviy ma'lumotlar va budjet
-- 🎮 O'yinlar va kinolar bo'limlari
-- 🔍 Wikipedia orqali avtomatik qidiruv
+</div>
 
-## 🛠 Texnologiyalar
+---
 
-| Texnologiya | Versiya | Maqsad |
-|-------------|---------|--------|
-| Python | 3.10+ | Asosiy til |
-| aiogram | 3.7.0 | Telegram Bot Framework |
-| wikipedia | 1.4.0 | Avtomatik qidiruv |
-| python-dotenv | 1.0.0 | Xavfsiz token saqlash |
+## 📸 Preview
 
-## 📂 Loyiha tuzilmasi
+```
+🎮 Start the bot → Subscribe to channel → Explore RE Universe
+      ↓
+📖 History | 🕹 Games | 🦸 Heroes | 🦹 Villains | 💰 Budget | 🎬 Videos
+      ↓
+🎮 Game Interesting | 🎬 Movie Interesting | ✨ Favorite Characters
+```
+
+---
+
+## ✨ Features
+
+| Feature | Description |
+|--------|-------------|
+| 🦸 **RE Heroes** | Detailed info & photos of Leon, Ada, Chris, Ethan, Jill, Claire and more |
+| 🦹 **RE Villains** | Deep backstories of Wesker, Nemesis, Mother Miranda, Mr. X and others |
+| 📖 **RE History** | Complete lore from Umbrella's founding to Village |
+| 🕹 **RE Games** | Full chronological list from RE0 to RE8 Village |
+| 🎬 **Video Section** | Exclusive video clips: History L, Requiem, Luis Sera, Hunk, RE Evolution |
+| 💰 **RE Budget** | Box office stats, sales figures, and franchise financial data |
+| 🎮 **Game Section** | RDR2, Detroit: Become Human, Cyberpunk 2077, Genshin Impact |
+| 📺 **Movie Section** | Invincible, The Boys, Supernatural, Loki |
+| ✨ **Favorite Characters** | Noob Saibot, Ghost, Batman, Light Yagami, Connor, Makima, Dante, Kratos & more |
+| 🔍 **Smart Search** | Auto Wikipedia search for any unknown topic in Uzbek |
+| 📢 **Channel Guard** | Users must subscribe to channel before using the bot |
+
+---
+
+## 🛠 Tech Stack
+
+| Technology | Version | Purpose |
+|-----------|---------|---------|
+| ![Python](https://img.shields.io/badge/-Python-3776AB?logo=python&logoColor=white) | 3.11 | Core language |
+| ![aiogram](https://img.shields.io/badge/-aiogram-2CA5E0?logo=telegram&logoColor=white) | 3.7.0 | Telegram Bot Framework |
+| Wikipedia API | 1.4.0 | Auto search integration |
+| python-dotenv | 1.0.0 | Secure token management |
+| Railway | — | 24/7 Cloud Deployment |
+
+---
+
+## 📂 Project Structure
 
 ```
 resident-evil-bot/
-├── bot.py              # Asosiy bot kodi
-├── requirements.txt    # Kutubxonalar ro'yxati
-├── Procfile            # Railway deploy uchun
-├── .env.example        # Token namunasi
-├── .gitignore          # Git uchun istisnolar
-└── README.md           # Hujjat
+│
+├── 🐍 bot.py              # Main bot logic (handlers, keyboards, media)
+├── 📋 requirements.txt    # Python dependencies
+├── 🚂 Procfile            # Railway deployment config
+├── 🐍 .python-version     # Python version pin (3.11)
+├── 🔒 .env.example        # Environment variable template
+├── 🚫 .gitignore          # Git ignore rules
+└── 📖 README.md           # Project documentation
 ```
 
-## 🚀 Ishga tushirish
+---
 
-### 1. Repozitoriyani klonlash
+## 🚀 Getting Started
+
+### Prerequisites
+- Python 3.11+
+- A Telegram Bot Token from [@BotFather](https://t.me/BotFather)
+
+### 1. Clone the repository
 ```bash
 git clone https://github.com/hojiakbaroktamov89-cpu/resident-evil-bot.git
 cd resident-evil-bot
 ```
 
-### 2. Kutubxonalarni o'rnatish
+### 2. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
 
-### 3. Token sozlash
-`.env.example` faylidan `.env` fayl yarating:
+### 3. Set up environment variables
 ```bash
 cp .env.example .env
 ```
-`.env` faylini oching va tokeningizni kiriting:
-```
-BOT_TOKEN=your_telegram_bot_token
+Open `.env` and add your token:
+```env
+BOT_TOKEN=your_telegram_bot_token_here
 ```
 
-### 4. Botni ishga tushirish
+### 4. Run the bot
 ```bash
 python bot.py
 ```
 
-## ☁️ Deploy (Railway)
+---
 
-Bot **Railway.app** platformasida doimiy ishlaydi:
+## ☁️ Deployment on Railway
 
-1. [railway.app](https://railway.app) ga kiring
-2. GitHub repo ulang
-3. `BOT_TOKEN` environment variable qo'shing
-4. Deploy bosing — tayyor!
+This bot is deployed and running **24/7** on [Railway.app](https://railway.app).
 
-## 🤖 Bot funksiyalari
+### Deploy your own instance:
 
-### Asosiy menyu
-- `🎮 Resident evilga kirish` — RE bo'limiga o'tish
-
-### RE bo'limi
-- `📖 Resident evil tarixi` — Seriya tarixi
-- `🕹 Resident evil o'yinlari` — O'yinlar xronologiyasi
-- `🦸‍♂️ Resident evil qahramonlari` — Leon, Ada, Chris, Ethan va boshqalar
-- `🦹‍♂️ Resident evil yovuzlari` — Wesker, Nemesis, Miranda va boshqalar
-- `💰 Resident evil budjeti` — Moliyaviy faktlar
-- `🎬 Videolar bo'limi` — Video kliplar
-
-### Qo'shimcha bo'limlar
-- `🎮 Game interesting` — Mashhur o'yinlar (RDR2, Detroit, Cyberpunk, Genshin)
-- `🎬 Movie interesting` — Mashhur seriallar (Invincible, The Boys, Supernatural, Loki)
-- `✨ Favorite character` — Turli o'yin va animelerdan sevimli qahramonlar
-
-## 👨‍💻 Muallif
-
-**Hojiakbar Oktamov**  
-GitHub: [@hojiakbaroktamov89-cpu](https://github.com/hojiakbaroktamov89-cpu)  
-Telegram: [@NOOB_comeback](https://t.me/NOOB_comeback)
+1. Fork this repository
+2. Go to [railway.app](https://railway.app) → **New Project**
+3. Select **Deploy from GitHub repo**
+4. Choose `resident-evil-bot`
+5. Go to **Variables** → Add:
+   ```
+   BOT_TOKEN = your_token_here
+   ```
+6. Click **Deploy** — done! 🎉
 
 ---
-*Bu loyiha Python va aiogram 3.x frameworki yordamida yaratilgan*
+
+## 🤖 Bot Commands & Navigation
+
+### Main Menu
+```
+/start → Welcome screen (with channel subscription check)
+🎮 Enter Resident Evil → Opens RE main menu
+```
+
+### RE Main Menu
+```
+📖 RE History          → Full lore from 1960s to present
+🕹 RE Games            → RE0 through RE8 Village
+🦸 RE Heroes           → All protagonist profiles
+🦹 RE Villains         → All antagonist profiles
+💰 RE Budget           → Financial stats & records
+🎬 Video Section       → Exclusive video content
+➡️ Next Section        → Game & Movie interests
+```
+
+### Heroes Available
+```
+Leon S. Kennedy | Ada Wong | Chris Redfield | Ethan Winters
+Jill Valentine | Claire Redfield | Mia Winters | Zoe Baker
+Sherry Birkin | Jake Muller | Rebecca Chambers
+```
+
+### Villains Available
+```
+Albert Wesker | Mr. X | Nemesis | Mother Miranda
+Krauser | Ramon Salazar | Jack Baker | Eveline
+```
+
+### Extra Sections
+```
+🎮 Game Interesting    → RDR2 | Detroit | Cyberpunk 2077 | Genshin Impact
+🎬 Movie Interesting   → Invincible | The Boys | Supernatural | Loki
+✨ Favorite Characters → 10+ characters from various games & anime
+```
+
+---
+
+## 📊 Bot Statistics
+
+- **Total Characters:** 19 heroes + villains
+- **Video Content:** 5 exclusive clips
+- **Game Coverage:** 9 RE titles (RE0 → RE8)
+- **Extra Content:** 4 games + 4 TV shows + 10 favorite characters
+- **Language Support:** Uzbek 🇺🇿
+
+---
+
+## 🔐 Security
+
+- Bot token is stored as an **environment variable** — never hardcoded
+- `.env` file is excluded from Git via `.gitignore`
+- Channel subscription verification before bot access
+
+---
+
+## 👨‍💻 Developer
+
+<div align="center">
+
+### Hojiakbar Oktamov
+
+[![GitHub](https://img.shields.io/badge/GitHub-hojiakbaroktamov89--cpu-181717?style=for-the-badge&logo=github)](https://github.com/hojiakbaroktamov89-cpu)
+[![Telegram](https://img.shields.io/badge/Telegram-@NOOB__comeback-2CA5E0?style=for-the-badge&logo=telegram)](https://t.me/NOOB_comeback)
+
+*"just young creator"*
+
+</div>
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** — feel free to use and modify.
+
+---
+
+<div align="center">
+
+**Made with ❤️ and Python**
+
+*If you like this project, give it a ⭐ on GitHub!*
+
+</div>
