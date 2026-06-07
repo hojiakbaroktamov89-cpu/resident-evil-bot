@@ -902,7 +902,7 @@ async def smart_search(message: Message):
              try:
                 wiki_info = wikipedia.summary(message.text, sentences=5)
                 await message.answer(f"📚 <b>Wikipedia:</b>\n\n{wiki_info}", parse_mode="HTML")
-            except Exception:
+             except Exception:
                 await message.answer("❌ Kechirasiz, ma'lumot topilmadi.")
 
 async def main():
