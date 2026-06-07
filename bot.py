@@ -33,8 +33,8 @@ def ask_gemini(savol: str) -> str:
             return r.json()["candidates"][0]["content"]["parts"][0]["text"]
         return None
     except Exception as e:
-    print(f"GEMINI XATO: {e}")
-    return None
+        print(f"GEMINI XATO: {e}")
+        return None
 
 main_kb = ReplyKeyboardMarkup(
     keyboard=[[KeyboardButton(text="🎮 Resident evilga kirish")]],
