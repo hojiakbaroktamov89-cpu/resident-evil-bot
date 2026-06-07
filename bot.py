@@ -28,16 +28,17 @@ async def test_gemini(message: Message):
         await message.answer("❌ ISHLAMADI - key None yoki xato")
 
 def ask_gemini(savol: str) -> str:
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key={GEMINI_API_KEY}"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}"
     prompt = (
-        f"Sen Resident Evil o'yini, uning personajlari, o'yinlari va boshqa mashhur o'yinlar, "
-        f"seriallar haqida bilimdon yordamchisan. "
+        f"Sen Resident Evil o'yini va boshqa o'yinlar haqida bilimdon yordamchisan. "
         f"Foydalanuvchi so'radi: {savol}. "
-        f"O'zbek tilida, qisqa va aniq javob ber (3-5 jumla)."
+        f"O'zbek tilida qisqa javob ber."
     )
     data = {"contents": [{"parts": [{"text": prompt}]}]}
     try:
-        r = requests.post(url, json=data, timeout=10)
+        r = requests.post(url, json=data, timeout=15)
+        print(f"GEMINI STATUS: {r.status_code}")
+        print(f"GEMINI RESPONSE: {r.text[:300]}")
         if r.status_code == 200:
             return r.json()["candidates"][0]["content"]["parts"][0]["text"]
         return None
