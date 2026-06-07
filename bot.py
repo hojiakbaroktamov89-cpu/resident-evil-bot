@@ -18,6 +18,15 @@ wikipedia.set_lang("uz")
 
 router = Router()
 
+@router.message(F.text == "/geminitest")
+async def test_gemini(message: Message):
+    await message.answer(f"KEY: {str(GEMINI_API_KEY)[:10]}...")
+    result = ask_gemini("salom")
+    if result:
+        await message.answer(f"✅ ISHLADI: {result[:100]}")
+    else:
+        await message.answer("❌ ISHLAMADI - key None yoki xato")
+
 def ask_gemini(savol: str) -> str:
     url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key={GEMINI_API_KEY}"
     prompt = (
