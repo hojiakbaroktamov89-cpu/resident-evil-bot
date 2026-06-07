@@ -34,8 +34,8 @@ def ask_gemini(savol: str) -> str:
         f"Foydalanuvchi so'radi: {savol}. "
         f"O'zbek tilida qisqa javob ber."
     )
-    data = {"contents": [{"parts": [{"text": prompt}]}]}
-    try:
+   data = {"contents": [{"parts": [{"text": prompt}]}]}
+   try:
         r = requests.post(url, json=data, timeout=15)
         print(f"GEMINI STATUS: {r.status_code}")
         print(f"GEMINI RESPONSE: {r.text[:300]}")
