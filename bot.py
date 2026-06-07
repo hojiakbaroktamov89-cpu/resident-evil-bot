@@ -2,6 +2,7 @@ import asyncio
 import logging
 import sys
 import os
+import requests
 import wikipedia
 from dotenv import load_dotenv
 from aiogram import Bot, Dispatcher, Router, F
@@ -12,10 +13,28 @@ from aiogram.client.default import DefaultBotProperties
 
 load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")
-
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 wikipedia.set_lang("uz")
 
 router = Router()
+
+def ask_gemini(savol: str) -> str:
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key={GEMINI_API_KEY}"
+    prompt = (
+        f"Sen Resident Evil o'yini, uning personajlari, o'yinlari va boshqa mashhur o'yinlar, "
+        f"seriallar haqida bilimdon yordamchisan. "
+        f"Foydalanuvchi so'radi: {savol}. "
+        f"O'zbek tilida, qisqa va aniq javob ber (3-5 jumla)."
+    )
+    data = {"contents": [{"parts": [{"text": prompt}]}]}
+    try:
+        r = requests.post(url, json=data, timeout=10)
+        if r.status_code == 200:
+            return r.json()["candidates"][0]["content"]["parts"][0]["text"]
+        return None
+    except Exception:
+        return None
+
 
 main_kb = ReplyKeyboardMarkup(
     keyboard=[[KeyboardButton(text="🎮 Resident evilga kirish")]],
@@ -875,26 +894,22 @@ async def smart_search(message: Message):
     elif "eveline" in text:
         await villain_eveline(message)
     else:
-        try:
-            wiki_info = wikipedia.summary(message.text, sentences=15)
-            await message.answer(
-                f"<b>📚 Wikipedia'dan batafsil ma'lumot:</b>\n\n{wiki_info}\n\n"
-                f"<i>Batafsil o'qish uchun Wikipedia saytiga kiring.</i>",
-                parse_mode="HTML"
-            )
-        except wikipedia.exceptions.PageError:
-            await message.answer("❌ Kechirasiz, bu mavzu bo'yicha Wikipedia'dan ham ma'lumot topilmadi.")
-        except wikipedia.exceptions.DisambiguationError as e:
-            options = ", ".join(e.options[:5])
-            await message.answer(f"🤔 Bir nechta natija topildi: {options}. Iltimos, aniqroq yozing.")
-        except Exception:
-            await message.answer("⚠️ Ma'lumot yuklashda texnik xatolik yuz berdi.")
+        await message.answer("🤖 <i>AI javob tayyorlanmoqda...</i>", parse_mode="HTML")
+        javob = ask_gemini(message.text)
+        if javob:
+            await message.answer(f"🤖 <b>AI javob:</b>\n\n{javob}", parse_mode="HTML")
+        else:
+             try:
+                wiki_info = wikipedia.summary(message.text, sentences=5)
+                await message.answer(f"📚 <b>Wikipedia:</b>\n\n{wiki_info}", parse_mode="HTML")
+            except Exception:
+                await message.answer("❌ Kechirasiz, ma'lumot topilmadi.")
 
 async def main():
     bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
     dp = Dispatcher()
     dp.include_router(router)
-    print("Bot ishga tushdi! ✅")
+    print("Bot Gemini AI bilan ishga tushdi! ✨")
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
