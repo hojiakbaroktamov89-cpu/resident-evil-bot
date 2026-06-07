@@ -26,16 +26,11 @@ async def test_gemini(message: Message):
         await message.answer(f"✅ ISHLADI: {result[:100]}")
     else:
         await message.answer("❌ ISHLAMADI - key None yoki xato")
-
 def ask_gemini(savol: str) -> str:
-   url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key={GEMINI_API_KEY}"
-   prompt = (
-        f"Sen Resident Evil o'yini va boshqa o'yinlar haqida bilimdon yordamchisan. "
-        f"Foydalanuvchi so'radi: {savol}. "
-        f"O'zbek tilida qisqa javob ber."
-    )
-   data = {"contents": [{"parts": [{"text": prompt}]}]}
-   try:
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key={GEMINI_API_KEY}"
+    prompt = f"Sen Resident Evil va boshqa o'yinlar haqida bilimdon yordamchisan. Foydalanuvchi so'radi: {savol}. O'zbek tilida qisqa javob ber."
+    data = {"contents": [{"parts": [{"text": prompt}]}]}
+    try:
         r = requests.post(url, json=data, timeout=15)
         print(f"GEMINI STATUS: {r.status_code}")
         print(f"GEMINI RESPONSE: {r.text[:300]}")
