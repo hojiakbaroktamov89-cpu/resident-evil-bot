@@ -28,8 +28,8 @@ async def test_gemini(message: Message):
         await message.answer("❌ ISHLAMADI - key None yoki xato")
 
 def ask_gemini(savol: str) -> str:
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={GEMINI_API_KEY}"
-    prompt = (
+   url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key={GEMINI_API_KEY}"
+   prompt = (
         f"Sen Resident Evil o'yini va boshqa o'yinlar haqida bilimdon yordamchisan. "
         f"Foydalanuvchi so'radi: {savol}. "
         f"O'zbek tilida qisqa javob ber."
