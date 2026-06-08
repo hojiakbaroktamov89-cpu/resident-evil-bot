@@ -13,33 +13,30 @@ from aiogram.client.default import DefaultBotProperties
 
 load_dotenv()
 TOKEN = os.getenv("BOT_TOKEN")
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY")
 wikipedia.set_lang("uz")
 
 router = Router()
 
-@router.message(F.text == "/geminitest")
-async def test_gemini(message: Message):
-    await message.answer(f"KEY: {str(GEMINI_API_KEY)[:10]}...")
-    result = ask_gemini("salom")
-    if result:
-        await message.answer(f"✅ ISHLADI: {result[:100]}")
-    else:
-        await message.answer("❌ ISHLAMADI - key None yoki xato")
 
 def ask_gemini(savol: str) -> str:
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key={GEMINI_API_KEY}"
-    prompt = f"Sen Resident Evil va boshqa o'yinlar haqida bilimdon yordamchisan. Foydalanuvchi so'radi: {savol}. O'zbek tilida qisqa javob ber."
-    data = {"contents": [{"parts": [{"text": prompt}]}]}
+    url = "https://api.groq.com/openai/v1/chat/completions"
+    headers = {"Authorization": f"Bearer {GROQ_API_KEY}", "Content-Type": "application/json"}
+    data = {
+        "model": "llama-3.3-70b-versatile",
+        "messages": [
+            {"role": "system", "content": "Sen Resident Evil va boshqa o'yinlar haqida bilimdon yordamchisan. O'zbek tilida qisqa javob ber."},
+            {"role": "user", "content": savol}
+        ],
+        "max_tokens": 300
+    }
     try:
-        r = requests.post(url, json=data, timeout=15)
-        print(f"GEMINI STATUS: {r.status_code}")
-        print(f"GEMINI RESPONSE: {r.text[:300]}")
+        r = requests.post(url, headers=headers, json=data, timeout=15)
         if r.status_code == 200:
-            return r.json()["candidates"][0]["content"]["parts"][0]["text"]
+            return r.json()["choices"][0]["message"]["content"]
         return None
     except Exception as e:
-        print(f"GEMINI XATO: {e}")
+        print(f"AI XATO: {e}")
         return None
 
 main_kb = ReplyKeyboardMarkup(
